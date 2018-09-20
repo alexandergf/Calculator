@@ -34,6 +34,20 @@
 
         <TableRow
             android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_reset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:onClick="onClickReset"
+                android:text="c"
+                android:textSize="35sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal">
 
@@ -110,11 +124,62 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btn_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickDigit"
+                android:text="1"
+                android:textSize="35sp" />
+
+            <Button
+                android:id="@+id/btn_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickDigit"
+                android:text="2"
+                android:textSize="35sp" />
+
+            <Button
+                android:id="@+id/btn_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickDigit"
+                android:text="3"
+                android:textSize="35sp" />
+
+            <Button
+                android:id="@+id/btn_multi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickOperator"
+                android:text="*"
+                android:textSize="35sp" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btn_coma"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickComa"
+                android:text=","
+                android:textSize="35sp" />
+
+            <Button
+                android:id="@+id/btn_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickDigit"
+                android:text="0"
+                android:textSize="35sp" />
 
             <Button
                 android:id="@+id/btn_igual"
@@ -122,6 +187,14 @@
                 android:layout_height="wrap_content"
                 android:onClick="onClickEquals"
                 android:text="="
+                android:textSize="35sp" />
+
+            <Button
+                android:id="@+id/btn_div"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickOperator"
+                android:text="/"
                 android:textSize="35sp" />
         </TableRow>
     </TableLayout>

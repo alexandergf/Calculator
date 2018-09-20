@@ -12,6 +12,7 @@ public class CalculatorActivity extends AppCompatActivity {
     private String num = ""; //Aqui es on esta guardat el numero actual
     private String numant = "";
     private char operacio = ' ';
+    private boolean banderaComa = false;
 
     //Referencias a la vista
     private TextView numview;
@@ -42,14 +43,49 @@ public class CalculatorActivity extends AppCompatActivity {
     }
 
     public void onClickEquals(View view) {
-        double x = Double.valueOf(num);
-        double xant = Double.valueOf(numant);
-        switch (operacio){
-            case '+': num = Double.toString(x + xant);
-            break;
-            case '-': num = Double.toString(xant - x);
-            break;
+        if (num=="" || numant==""){
+            //Toast.makeText(this, "Faltan datos.", Toast.LENGTH_SHORT).show();
+            numview.setText(num);
+        }else {
+            banderaComa=false;
+            double x = Double.valueOf(num);
+            double xant = Double.valueOf(numant);
+            switch (operacio) {
+                case '+':
+                    num = Double.toString(x + xant);
+                    break;
+                case '-':
+                    num = Double.toString(xant - x);
+                    break;
+                case '*':
+                    num = Double.toString(xant * x);
+                    break;
+                case '/':
+                    num = Double.toString(xant / x);
+                    break;
+            }
+            numview.setText(num);
         }
+    }
+    public void onClickReset (View view){
+        num="";
+        numant="";
+        operacio=' ';
+        banderaComa=false;
         numview.setText(num);
+    }
+    public void onClickComa (View view){
+        Button b = (Button)view;
+
+        if (banderaComa==false && num==""){
+            banderaComa=true;
+            num="0" + b.getText().toString();
+            numview.setText(num);
+        } else if (banderaComa==false && num!=""){
+            banderaComa=true;
+            numview.setText(b.getText().toString());
+        } else {
+
+        }
     }
 }
