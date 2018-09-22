@@ -13,6 +13,8 @@ public class CalculatorActivity extends AppCompatActivity {
     private String numant = "";
     private char operacio = ' ';
     private boolean banderaComa = false;
+    private boolean banderaFinal=false; //bandera para ver si sumo dos enteros o decimales.
+
 
     //Referencias a la vista
     private TextView numview;
@@ -29,27 +31,32 @@ public class CalculatorActivity extends AppCompatActivity {
 
     public void  onClickOperator (View view){
         Button b = (Button)view;
+
         numant =  num;
         num="";
+        banderaComa = false;
         operacio=b.getText().toString().charAt(0);
         numview.setText(num);
+
     }
 
     public void onClickDigit(View view){
         Button b = (Button)view;
-
         num += b.getText().toString();
         numview.setText(num);
+
     }
 
     public void onClickEquals(View view) {
         if (num=="" || numant==""){
             //Toast.makeText(this, "Faltan datos.", Toast.LENGTH_SHORT).show();
             numview.setText(num);
-        }else {
+        }else if (banderaFinal==true){
             banderaComa=false;
             double x = Double.valueOf(num);
+            Math.round(x);
             double xant = Double.valueOf(numant);
+            Math.round(xant);
             switch (operacio) {
                 case '+':
                     num = Double.toString(x + xant);
@@ -64,26 +71,52 @@ public class CalculatorActivity extends AppCompatActivity {
                     num = Double.toString(xant / x);
                     break;
             }
-            numview.setText(num);
+        }else{
+            banderaComa=false;
+            double x = Double.valueOf(num);
+            Math.ceil(x);
+            double xant = Double.valueOf(numant);
+            Math.ceil(xant);
+            switch (operacio) {
+                case '+':
+                    num = Double.toString(x + xant);
+                    break;
+                case '-':
+                    num = Double.toString(xant - x);
+                    break;
+                case '*':
+                    num = Double.toString(xant * x);
+                    break;
+                case '/':
+                    num = Double.toString(xant / x);
+                    break;
+            }
+
         }
+        numview.setText(num);
+
+       // num="";
+        //numant="";
     }
     public void onClickReset (View view){
         num="";
         numant="";
         operacio=' ';
         banderaComa=false;
+
         numview.setText(num);
     }
     public void onClickComa (View view){
         Button b = (Button)view;
-
+        banderaFinal=true;
         if (banderaComa==false && num==""){
             banderaComa=true;
-            num="0" + b.getText().toString();
+            num="0.";
             numview.setText(num);
         } else if (banderaComa==false && num!=""){
             banderaComa=true;
-            numview.setText(b.getText().toString());
+            num += ".";
+            numview.setText(num);
         } else {
 
         }
